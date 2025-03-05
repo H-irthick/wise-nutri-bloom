@@ -2,7 +2,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Leaf, Egg, Beef, Wheat, Peanut } from 'lucide-react';
+import { Leaf, Egg, Beef, Wheat } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { fadeInUp, staggerContainer } from '@/lib/animations';
 
@@ -106,7 +106,7 @@ const DietaryPreferences: React.FC = () => {
     {
       id: 'nut-free',
       name: 'Nut-Free',
-      icon: <Peanut className="h-10 w-10 text-amber-800" />,
+      icon: <span className="text-3xl">🥜</span>,
       description: 'Diet excluding all tree nuts and peanuts',
       foods: ['Fruits', 'Vegetables', 'Meat', 'Fish', 'Dairy', 'Grains', 'Seeds (if not cross-contaminated)'],
       avoid: ['Peanuts', 'Tree nuts (almonds, walnuts, cashews, etc.)', 'Nut butters', 'Marzipan', 'Many desserts', 'Some vegetarian protein sources']

@@ -1,13 +1,13 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Search, Clipboard, PieChart, BarChart, LineChart } from 'lucide-react';
+import { Search, Clipboard, PieChart, BarChart as BarChartIcon, LineChart as LineChartIcon } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { PieChart as RechartsChart, Pie, Cell, BarChart as RechartBar, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { PieChart as RechartsChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 // Food database with nutritional information
 const foodDatabase = [
@@ -263,13 +263,13 @@ const NutritionalAnalysis: React.FC = () => {
                 <Tabs defaultValue="macros">
                   <TabsList className="grid grid-cols-3 mb-6">
                     <TabsTrigger value="macros" className="text-xs sm:text-sm"><PieChart className="h-4 w-4 mr-1" /> Macronutrients</TabsTrigger>
-                    <TabsTrigger value="detailed" className="text-xs sm:text-sm"><BarChart className="h-4 w-4 mr-1" /> Detailed View</TabsTrigger>
-                    <TabsTrigger value="comparison" className="text-xs sm:text-sm"><LineChart className="h-4 w-4 mr-1" /> % Daily Value</TabsTrigger>
+                    <TabsTrigger value="detailed" className="text-xs sm:text-sm"><BarChartIcon className="h-4 w-4 mr-1" /> Detailed View</TabsTrigger>
+                    <TabsTrigger value="comparison" className="text-xs sm:text-sm"><LineChartIcon className="h-4 w-4 mr-1" /> % Daily Value</TabsTrigger>
                   </TabsList>
                   
                   <TabsContent value="macros" className="h-80">
                     <ResponsiveContainer width="100%" height="100%">
-                      <PieChart>
+                      <RechartsChart>
                         <Pie
                           data={macroData}
                           cx="50%"
@@ -286,7 +286,7 @@ const NutritionalAnalysis: React.FC = () => {
                         </Pie>
                         <Tooltip />
                         <Legend />
-                      </PieChart>
+                      </RechartsChart>
                     </ResponsiveContainer>
                   </TabsContent>
                   
