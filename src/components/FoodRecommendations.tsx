@@ -39,7 +39,7 @@ const foodItems: FoodItem[] = [
     category: 'grains',
     nutrients: ['Complete Protein', 'Fiber', 'Magnesium'],
     benefits: 'Provides all essential amino acids and supports digestion',
-    imageUrl: 'https://images.unsplash.com/photo-1586201375761-83865001e8d7?q=80&w=500&auto=format&fit=crop'
+    imageUrl: 'https://images.unsplash.com/photo-1586201375761-83865001e8d7?w=500&auto=format&fit=crop'
   },
   {
     id: 4,
@@ -55,7 +55,7 @@ const foodItems: FoodItem[] = [
     category: 'fruits',
     nutrients: ['Antioxidants', 'Vitamin C', 'Fiber'],
     benefits: 'Protects against oxidative stress and inflammation',
-    imageUrl: 'https://images.unsplash.com/photo-1566400628146-34609d34295d?q=80&w=500&auto=format&fit=crop'
+    imageUrl: 'https://images.unsplash.com/photo-1566400628146-34609d34295d?w=500&auto=format&fit=crop'
   },
   {
     id: 6,
