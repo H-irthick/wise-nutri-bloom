@@ -23,7 +23,7 @@ const foodItems: FoodItem[] = [
     category: 'fruits',
     nutrients: ['Healthy Fats', 'Fiber', 'Vitamin E'],
     benefits: 'Supports heart health and provides essential fatty acids',
-    imageUrl: 'https://images.unsplash.com/photo-1519162808019-7de1683fa2ad?q=80&w=500&auto=format&fit=crop'
+    imageUrl: 'https://images.unsplash.com/photo-1519162808019-7de1683fa2ad?w=500&auto=format&fit=crop'
   },
   {
     id: 2,
@@ -31,7 +31,7 @@ const foodItems: FoodItem[] = [
     category: 'proteins',
     nutrients: ['Omega-3', 'Protein', 'Vitamin D'],
     benefits: 'Reduces inflammation and supports brain health',
-    imageUrl: 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?q=80&w=500&auto=format&fit=crop'
+    imageUrl: 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=500&auto=format&fit=crop'
   },
   {
     id: 3,
@@ -47,7 +47,7 @@ const foodItems: FoodItem[] = [
     category: 'vegetables',
     nutrients: ['Iron', 'Vitamin K', 'Antioxidants'],
     benefits: 'Supports bone health and provides essential nutrients',
-    imageUrl: 'https://images.unsplash.com/photo-1576045057995-568f588f82fb?q=80&w=500&auto=format&fit=crop'
+    imageUrl: 'https://images.unsplash.com/photo-1576045057995-568f588f82fb?w=500&auto=format&fit=crop'
   },
   {
     id: 5,
@@ -63,7 +63,7 @@ const foodItems: FoodItem[] = [
     category: 'dairy',
     nutrients: ['Protein', 'Probiotics', 'Calcium'],
     benefits: 'Supports gut health and provides high-quality protein',
-    imageUrl: 'https://images.unsplash.com/photo-1488477181946-6428a0291777?q=80&w=500&auto=format&fit=crop'
+    imageUrl: 'https://images.unsplash.com/photo-1488477181946-6428a0291777?w=500&auto=format&fit=crop'
   },
 ];
 
