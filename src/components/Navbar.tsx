@@ -1,20 +1,33 @@
 
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
+import { useMobile } from '@/hooks/use-mobile';
 
 const Navbar: React.FC = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const isMobile = useMobile();
 
+  // Toggle the mobile menu
+  const toggleMenu = () => setIsOpen(!isOpen);
+
+  // Close the menu when the window is resized to desktop
+  useEffect(() => {
+    if (!isMobile && isOpen) {
+      setIsOpen(false);
+    }
+  }, [isMobile, isOpen]);
+
+  // Change navbar background on scroll
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 10) {
-        setIsScrolled(true);
+      if (window.scrollY > 20) {
+        setScrolled(true);
       } else {
-        setIsScrolled(false);
+        setScrolled(false);
       }
     };
 
@@ -22,110 +35,86 @@ const Navbar: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Navigation links
+  const navLinks = [
+    { text: 'Home', href: '/' },
+    { text: 'Calculator', href: '#calculator' },
+    { text: 'Dietary Options', href: '#dietary-preferences' },
+    { text: 'Nutritional Analysis', href: '#nutritional-analysis' },
+    { text: 'BMI Calculator', href: '#bmi-calculator' },
+    { text: 'Meal Planner', href: '#meal-planner' },
+    { text: 'Recommendations', href: '#recommendations' },
+    { text: 'About', href: '#about' },
+  ];
+
   return (
     <header
-      className={cn(
-        "sticky top-0 z-40 w-full transition-all duration-300",
-        isScrolled 
-          ? "bg-background/80 backdrop-blur-base border-b border-border/50 py-3" 
-          : "bg-transparent py-5"
-      )}
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+        scrolled ? 'bg-white/80 backdrop-blur-sm shadow-sm' : 'bg-transparent'
+      }`}
     >
-      <div className="container px-4 md:px-6">
-        <div className="flex items-center justify-between">
-          <Link 
-            to="/" 
-            className="flex items-center gap-2 transition-all-200 hover:opacity-80"
-          >
-            <div className="rounded-full bg-nutriwise-600 p-1.5">
-              <div className="w-5 h-5 rounded-full bg-white" />
-            </div>
-            <span className="font-medium text-xl tracking-tight">NutriWise</span>
+      <div className="container mx-auto px-4 md:px-6">
+        <div className="flex items-center justify-between h-16 md:h-20">
+          {/* Logo */}
+          <Link to="/" className="flex items-center">
+            <span className="text-xl font-bold text-nutriwise-800">
+              Nutri<span className="text-nutriwise-600">Wise</span>
+            </span>
           </Link>
-          
-          <nav className="hidden md:flex items-center gap-6">
-            <Link to="/" className="text-foreground/80 hover:text-foreground transition-all-200">
-              Home
-            </Link>
-            <Link to="#calculator" className="text-foreground/80 hover:text-foreground transition-all-200">
-              Calculator
-            </Link>
-            <Link to="#foods" className="text-foreground/80 hover:text-foreground transition-all-200">
-              Foods
-            </Link>
-            <Link to="#about" className="text-foreground/80 hover:text-foreground transition-all-200">
-              About
-            </Link>
+
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex space-x-1">
+            {navLinks.map((link, i) => (
+              <a
+                key={i}
+                href={link.href}
+                className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-nutriwise-600 hover:bg-nutriwise-50 rounded-md transition-colors"
+              >
+                {link.text}
+              </a>
+            ))}
           </nav>
-          
-          <div className="hidden md:flex items-center gap-3">
-            <Button variant="ghost" size="sm">
-              Sign In
-            </Button>
-            <Button size="sm" className="bg-nutriwise-600 hover:bg-nutriwise-700 text-white">
-              Get Started
-            </Button>
-          </div>
-          
+
+          {/* Mobile Menu Button */}
           <Button
             variant="ghost"
             size="icon"
+            onClick={toggleMenu}
             className="md:hidden"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle Menu"
           >
-            {mobileMenuOpen ? (
-              <X className="h-5 w-5" />
-            ) : (
-              <Menu className="h-5 w-5" />
-            )}
-            <span className="sr-only">Toggle menu</span>
+            {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </Button>
         </div>
       </div>
-      
-      {/* Mobile menu */}
-      {mobileMenuOpen && (
-        <div className="md:hidden fixed inset-0 z-50 bg-background/95 backdrop-blur-base pt-16 px-4 animate-fade-in">
-          <nav className="flex flex-col gap-4 py-8">
-            <Link 
-              to="/" 
-              className="text-lg py-2 border-b border-border/50 text-foreground/90 hover:text-foreground"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Home
-            </Link>
-            <Link 
-              to="#calculator" 
-              className="text-lg py-2 border-b border-border/50 text-foreground/90 hover:text-foreground"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Calculator
-            </Link>
-            <Link 
-              to="#foods" 
-              className="text-lg py-2 border-b border-border/50 text-foreground/90 hover:text-foreground"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Foods
-            </Link>
-            <Link 
-              to="#about" 
-              className="text-lg py-2 border-b border-border/50 text-foreground/90 hover:text-foreground"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              About
-            </Link>
-            <div className="flex flex-col gap-3 mt-4">
-              <Button variant="outline" className="w-full">
-                Sign In
-              </Button>
-              <Button className="w-full bg-nutriwise-600 hover:bg-nutriwise-700 text-white">
-                Get Started
-              </Button>
+
+      {/* Mobile Navigation */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="md:hidden overflow-hidden bg-white border-b"
+          >
+            <div className="container mx-auto px-4 py-4">
+              <nav className="flex flex-col space-y-1">
+                {navLinks.map((link, i) => (
+                  <a
+                    key={i}
+                    href={link.href}
+                    className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-nutriwise-600 hover:bg-nutriwise-50 rounded-md transition-colors"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {link.text}
+                  </a>
+                ))}
+              </nav>
             </div>
-          </nav>
-        </div>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 };

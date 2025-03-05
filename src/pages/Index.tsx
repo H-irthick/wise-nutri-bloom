@@ -5,6 +5,11 @@ import Layout from '@/components/Layout';
 import Hero from '@/components/Hero';
 import NutritionCalculator from '@/components/NutritionCalculator';
 import FoodRecommendations from '@/components/FoodRecommendations';
+import ChatBot from '@/components/ChatBot';
+import DietaryPreferences from '@/components/DietaryPreferences';
+import NutritionalAnalysis from '@/components/NutritionalAnalysis';
+import BMICalculator from '@/components/BMICalculator';
+import MealPlanner from '@/components/MealPlanner';
 import { pageVariants } from '@/lib/animations';
 
 const Index: React.FC = () => {
@@ -47,6 +52,10 @@ const Index: React.FC = () => {
       >
         <Hero />
         <NutritionCalculator />
+        <DietaryPreferences />
+        <NutritionalAnalysis />
+        <BMICalculator />
+        <MealPlanner />
         <FoodRecommendations />
         
         {/* About Section */}
@@ -209,6 +218,9 @@ const Index: React.FC = () => {
             </div>
           </div>
         </section>
+        
+        {/* ChatBot component is fixed and visible on all pages */}
+        <ChatBot />
       </motion.div>
     </Layout>
   );
